@@ -11,3 +11,4 @@ export const getProjectById = async (id: string): Promise<Project> => {
     const response = await api.get<Project>(ENDPOINTS.PROJECTS.DETAILS(id));
     return response.data;
 };
+
