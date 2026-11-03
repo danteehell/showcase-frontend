@@ -71,3 +71,11 @@ export interface Partner {
 export interface PartnersResponse {
     data: Partner[];
 }
+
+export type ErrorType = 'network' | 'server' | 'client' | 'unknown';
+
+export interface AppError {
+    type: ErrorType;
+    message: string;
+    statusCode?: number;
+}

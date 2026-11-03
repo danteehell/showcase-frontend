@@ -68,3 +68,5 @@ export const ProjectCard = ({ project }: ProjectCardProps) => {
         </article>
     );
 };
+
+// TODO: переделать 
