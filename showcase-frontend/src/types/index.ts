@@ -1,24 +1,23 @@
 export type UserRole = 'student' | 'curator' | 'admin';
 
+export interface StudentProfile {
+    course: number | null;
+    specialty: string | null;
+}
+
+export interface CuratorProfile {
+    department: string | null;
+}
+
 export interface User {
     id: number;
-    username: string;
     email: string;
     first_name: string;
+    middle_name: string;
     last_name: string;
     role: UserRole;
-}
-
-export interface AuthResponse {
-    access_token: string;
-    refresh_token: string;
-    user: User;
-}
-
-export interface ProjectListItem {
-    type: string;
-    position: number;
-    text: string;
+    student_profile?: StudentProfile;
+    curator_profile?: CuratorProfile;
 }
 
 export interface Project {
@@ -39,7 +38,8 @@ export interface Project {
     is_active: boolean;
     created_at: string;
     updated_at: string;
-    list_items: ProjectListItem[];
+    tasks: string[];
+    technologies: string[];
 }
 
 export interface ProjectsResponse {
@@ -61,7 +61,6 @@ export interface FilterCategory {
     options: FilterOption[];
 }
 
-export type FiltersResponse = Record<string, FilterCategory>;
 
 export interface Partner {
     name: string;
@@ -78,4 +77,30 @@ export interface AppError {
     type: ErrorType;
     message: string;
     statusCode?: number;
+}
+export interface FilterOption {
+    id: number;
+    name: string;
+}
+
+export interface FilterCategory {
+    id: number;
+    name: string;
+    options: FilterOption[];
+}
+
+export interface FiltersResponse {
+    "Тематика"?: FilterCategory;
+    "Специальность"?: FilterCategory;
+    "Курс"?: FilterCategory;
+    "Корпус"?: FilterCategory;
+    "Сложность"?: FilterCategory;
+    [key: string]: FilterCategory | undefined; 
+}
+
+export interface ProjectFiltersParams {
+    search?: string;
+    theme?: string;
+    specialty?: string;
+    course?: string;
 }

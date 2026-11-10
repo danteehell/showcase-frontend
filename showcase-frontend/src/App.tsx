@@ -1,5 +1,6 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { ShowcasePage } from './pages/ShowcasePage';
+import { ProjectDetail } from './pages/ProjectDetailsPage'; 
 
 function App() {
   return (
@@ -7,10 +8,7 @@ function App() {
       <Routes>
         <Route path="/" element={<ShowcasePage />} />
       
-        <Route 
-          path="/projects/:id" 
-          element={<div className="p-10 text-center text-2xl">Страница конкретного проекта в разработке...</div>} 
-        />
+        <Route path="/projects/:id" element={<ProjectDetail />} />
       </Routes>
     </BrowserRouter>
   );

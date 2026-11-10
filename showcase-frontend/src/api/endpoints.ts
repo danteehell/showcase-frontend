@@ -6,7 +6,7 @@ export const ENDPOINTS = {
     },
     PROJECTS: {
         LIST: '/showcase/projects/',
-        DETAILS: (id: number | string) => `/showcase/projects-manage/${id}/`,
+        DETAILS: (id: number | string) => `/showcase/projects-viewset/${id}/`,
         FILTERS: '/showcase/filters/',
         PARTNERS: '/showcase/partners/',
     },
