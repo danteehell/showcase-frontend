@@ -10,6 +10,7 @@ import {
 import api from '../api/axios';
 import { ENDPOINTS } from '../api/endpoints';
 import type { Project } from '../types';
+import { AppShell } from '../components/showcase/AppShell';
 
 export const ProjectDetail = () => {
     const { id } = useParams<{ id: string }>();
@@ -41,187 +42,182 @@ export const ProjectDetail = () => {
 
     if (loading) {
         return (
-            <div className="min-h-screen flex items-center justify-center bg-[#F8FBFF]">
-                <Loader2 className="w-10 h-10 text-primary animate-spin" />
-            </div>
+            <AppShell>
+                <div className="flex min-h-[60vh] items-center justify-center">
+                    <Loader2 className="h-10 w-10 animate-spin text-[#7F8EF8]" />
+                </div>
+            </AppShell>
         );
     }
 
     if (error || !project) {
         return (
-            <div className="min-h-screen flex flex-col items-center justify-center bg-[#F8FBFF] text-center p-6">
-                <AlertCircle size={64} className="text-red-400 mb-4" />
-                <h2 className="text-2xl font-bold text-gray-900 mb-2">Проект не найден</h2>
-                <p className="text-gray-500 mb-6">{error}</p>
-                <Link to="/" className="text-primary hover:underline flex items-center gap-2">
-                    <ArrowLeft size={20} /> Вернуться на витрину
-                </Link>
-            </div>
+            <AppShell>
+                <div className="flex min-h-[60vh] flex-col items-center justify-center p-6 text-center">
+                    <AlertCircle size={56} className="mb-4 text-[#7F8EF8]" />
+                    <h2 className="mb-2 text-2xl font-bold text-[#182845]">Проект не найден</h2>
+                    <p className="mb-6 text-[#182845]/60">{error}</p>
+                    <Link to="/" className="flex items-center gap-2 text-[#7F8EF8] hover:underline">
+                        <ArrowLeft size={20} /> Вернуться на витрину
+                    </Link>
+                </div>
+            </AppShell>
         );
     }
 
     return (
-        <div className="bg-[#F8FBFF] min-h-screen pb-12">
-            <div className="max-w-6xl mx-auto px-4 pt-6">
-                
-                <Link to="/" className="inline-flex items-center gap-2 text-gray-500 hover:text-primary transition-colors mb-6">
-                    <ArrowLeft size={20} />
+        <AppShell>
+            <div className="mx-auto w-full space-y-3 py-2">
+                <Link to="/" className="mb-1 inline-flex h-6 items-center gap-2 text-[13px] font-medium text-[#4769C9] transition-colors hover:text-[#7F8EF8]">
+                    <ArrowLeft size={16} strokeWidth={2} />
                     <span>К списку проектов</span>
                 </Link>
 
-                <div className="bg-gradient-to-r from-blue-100 via-blue-50 to-indigo-50 rounded-[32px] p-8 md:p-12 mb-8 relative overflow-hidden shadow-sm border border-blue-100/50">
-                    <div className="relative z-10 md:w-2/3">
-                        <h1 className="text-3xl md:text-4xl font-bold text-[#1A1A2E] mb-4 leading-tight">
-                            {project.title}
-                        </h1>
-                        <p className="text-gray-600 mb-8 text-lg md:max-w-xl">
-                            {project.short_description}
-                        </p>
-                        
-                        <div className="flex flex-wrap gap-2 mb-8">
+                <section className="relative isolate min-h-[340px] overflow-hidden rounded-[24px] border border-[#DFE8FB] bg-[linear-gradient(110deg,#E5EDFD_0%,#CADCFC_65%,#DAE6FE_100%)] px-6 py-6 shadow-[0_4px_4px_rgba(16,51,112,0.05)] sm:min-h-[360px] sm:rounded-[30px] sm:px-8 sm:py-7 xl:min-h-[393px]">
+                    <img src="/assets/project-detail-asset-1.png" alt="" aria-hidden="true" className="absolute inset-0 -z-10 h-full w-full object-cover" />
+                    <div className="relative z-10 flex min-h-[290px] flex-col sm:min-h-[310px] xl:min-h-[335px]">
+                        <div className="max-w-[610px]">
+                            <h1 className="mb-2 max-w-[580px] text-[30px] font-bold leading-[1.08] tracking-[-0.8px] text-[#102B5C] sm:text-[36px] xl:text-[38px]">
+                                {project.title}
+                            </h1>
+                            <p className="max-w-[500px] text-[14px] leading-[1.4] text-[#7183B3] sm:text-[15px]">
+                                {project.short_description}
+                            </p>
+                        </div>
+
+                        <div className="mt-3 flex flex-wrap gap-2">
                             {project.specialties.map((spec, idx) => (
-                                <span key={idx} className="bg-white/70 text-[#7C85FC] px-4 py-1.5 rounded-full text-sm font-semibold shadow-sm backdrop-blur-sm">
+                                <span key={idx} className="inline-flex min-h-[30px] items-center rounded-full bg-white/65 px-3.5 text-[12px] font-medium text-[#7489FC] shadow-[0_2px_6px_rgba(16,51,112,0.04)] backdrop-blur-sm">
                                     {spec}
                                 </span>
                             ))}
                         </div>
 
-                        <div className="flex flex-wrap items-center gap-8">
-                            <div className="flex items-center gap-3">
-                                <div className="p-2 bg-white/60 rounded-xl">
-                                    <Users size={24} className="text-gray-700" />
-                                </div>
-                                <div className="flex flex-col">
-                                    <span className="text-xs text-gray-500 font-medium">Квота на проект</span>
-                                    <span className="font-bold text-gray-900">{project.spots_remaining} из 20</span>
+                        <div className="mt-auto flex w-full max-w-[650px] flex-wrap items-center gap-x-6 gap-y-3 border-t border-[#DCE6FB]/90 pt-3 sm:gap-x-7">
+                            <div className="flex items-center gap-2.5">
+                                <Users size={29} strokeWidth={1.8} className="shrink-0 text-[#103370]" aria-hidden="true" />
+                                <div className="leading-[1.25]">
+                                    <span className="block text-[11px] text-[#182845]/65">Квота на проект</span>
+                                    <span className="block text-[12px] font-semibold text-[#182845]">{project.spots_remaining} из 20</span>
                                 </div>
                             </div>
-                            <div className="flex items-center gap-3">
-                                <div className="p-2 bg-white/60 rounded-xl">
-                                    <Calendar size={24} className="text-gray-700" />
-                                </div>
-                                <div className="flex flex-col">
-                                    <span className="text-xs text-gray-500 font-medium">Срок</span>
-                                    <span className="font-bold text-gray-900">Учебный год</span>
+                            <div className="flex items-center gap-2.5">
+                                <Calendar size={27} strokeWidth={1.8} className="shrink-0 text-[#103370]" aria-hidden="true" />
+                                <div className="leading-[1.25]">
+                                    <span className="block text-[11px] text-[#182845]/65">Срок</span>
+                                    <span className="block text-[12px] font-semibold text-[#182845]">Учебный год</span>
                                 </div>
                             </div>
                             {project.is_active && (
-                                <div className="flex items-center gap-1.5 bg-[#E8F8F2] text-[#10B981] px-4 py-2 rounded-full text-sm font-bold shadow-sm">
-                                    <CheckCircle2 size={18} />
+                                <div className="inline-flex min-h-[34px] items-center gap-2 rounded-full bg-[#DDF8ED] px-3.5 text-[12px] font-semibold text-[#00B97D] shadow-[0_2px_5px_rgba(0,185,125,0.08)]">
+                                    <CheckCircle2 size={16} strokeWidth={2} aria-hidden="true" />
                                     Набор открыт
                                 </div>
                             )}
                         </div>
                     </div>
-                </div>
+                </section>
 
-                <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-                    
-                    <div className="lg:col-span-2 space-y-6">
-                        
-                        <section className="bg-white rounded-[24px] p-8 shadow-sm border border-gray-100">
-                            <div className="flex items-center gap-3 mb-6">
-                                <div className="p-2 bg-blue-50 text-primary rounded-xl">
-                                    <FileText size={24} />
+                <div className="grid grid-cols-1 gap-3 pt-1 lg:grid-cols-[minmax(0,1.75fr)_minmax(300px,1fr)] xl:gap-4">
+                    <div className="flex flex-col gap-3 xl:gap-4">
+                        <section className="rounded-[18px] border border-[rgba(16,51,112,0.07)] bg-[#FCFCFE] p-5 shadow-[0_4px_4px_rgba(16,51,112,0.045)] sm:p-6">
+                            <div className="mb-4 flex items-center gap-3">
+                                <div className="flex size-[38px] items-center justify-center rounded-full bg-[#EEF2FF] text-[#7F8EF8]">
+                                    <FileText size={22} strokeWidth={1.8} aria-hidden="true" />
                                 </div>
-                                <h2 className="text-xl font-bold text-[#1A1A2E]">О проекте</h2>
+                                <h2 className="text-[19px] font-semibold tracking-[-0.2px] text-[#182845]">О проекте</h2>
                             </div>
-                            <p className="text-gray-600 whitespace-pre-line leading-relaxed">
+                            <p className="whitespace-pre-line text-[14px] leading-[1.55] text-[#182845]/70 sm:text-[15px]">
                                 {project.long_description || 'Подробное описание пока не добавлено.'}
                             </p>
                         </section>
 
                         {project.tasks && project.tasks.length > 0 && (
-                            <section className="bg-white rounded-[24px] p-8 shadow-sm border border-gray-100">
-                                <div className="flex items-center gap-3 mb-6">
-                                    <div className="p-2 bg-purple-50 text-purple-600 rounded-xl">
-                                        <ListChecks size={24} />
+                            <section className="rounded-[18px] border border-[rgba(16,51,112,0.07)] bg-[#FCFCFE] p-5 shadow-[0_4px_4px_rgba(16,51,112,0.045)] sm:p-6">
+                                <div className="mb-4 flex items-center gap-3">
+                                    <div className="flex size-[38px] items-center justify-center rounded-full bg-[#EEF2FF] text-[#7F8EF8]">
+                                        <ListChecks size={22} strokeWidth={1.8} aria-hidden="true" />
                                     </div>
-                                    <h2 className="text-xl font-bold text-[#1A1A2E]">Что предстоит делать</h2>
+                                    <h2 className="text-[19px] font-semibold tracking-[-0.2px] text-[#182845]">Что предстоит делать</h2>
                                 </div>
-                                <ul className="grid grid-cols-1 md:grid-cols-2 gap-x-6 gap-y-3">
+                                <ul className="grid grid-cols-1 gap-x-6 gap-y-2.5 sm:grid-cols-2">
                                     {project.tasks.map((task, idx) => (
-                                        <li key={idx} className="flex items-start gap-2 text-gray-600">
-                                            <span className="w-1.5 h-1.5 rounded-full bg-primary mt-2 shrink-0"></span>
+                                        <li key={idx} className="flex items-start gap-2.5 text-[14px] leading-[1.4] text-[#182845]/70">
+                                            <span className="mt-[7px] size-1.5 shrink-0 rounded-full bg-[#7F8EF8]" />
                                             <span>{task}</span>
                                         </li>
                                     ))}
                                 </ul>
                             </section>
                         )}
-
-                        {project.technologies && project.technologies.length > 0 && (
-                            <section className="bg-white rounded-[24px] p-8 shadow-sm border border-gray-100">
-                                <div className="flex items-center gap-3 mb-6">
-                                    <div className="p-2 bg-green-50 text-green-600 rounded-xl">
-                                        <Code2 size={24} />
-                                    </div>
-                                    <h2 className="text-xl font-bold text-[#1A1A2E]">Используемые технологии</h2>
-                                </div>
-                                <div className="flex flex-wrap gap-2">
-                                    {project.technologies.map((tech, idx) => (
-                                        <span key={idx} className="bg-[#F5F7FB] text-[#7C85FC] px-4 py-1.5 rounded-full text-sm font-medium">
-                                            {tech}
-                                        </span>
-                                    ))}
-                                </div>
-                            </section>
-                        )}
                     </div>
 
-                    <div className="space-y-6">
-                        <aside className="bg-white rounded-[24px] p-6 shadow-sm border border-gray-100 sticky top-6">
-                            <div className="flex items-center gap-3 mb-6">
-                                <div className="p-2 bg-blue-50 text-primary rounded-full">
-                                    <User size={20} />
-                                </div>
-                                <h2 className="text-lg font-bold text-[#1A1A2E]">Информация о проекте</h2>
+                    <aside className="h-fit rounded-[18px] border border-[rgba(16,51,112,0.07)] bg-[#FCFCFE] p-5 shadow-[0_4px_4px_rgba(16,51,112,0.045)] sm:p-6 lg:sticky lg:top-4">
+                        <div className="mb-4 flex items-center gap-3">
+                            <div className="flex size-[38px] items-center justify-center rounded-full bg-[#EEF2FF] text-[#7F8EF8]">
+                                <User size={21} strokeWidth={1.8} aria-hidden="true" />
                             </div>
-                            
-                            <div className="space-y-6">
-                                <div className="flex gap-4">
-                                    <Users className="text-gray-400 shrink-0" size={22} />
-                                    <div>
-                                        <p className="text-xs text-gray-500 mb-1">Свободных мест</p>
-                                        <p className="font-bold text-[#7C85FC] text-lg">{project.spots_remaining} мест</p>
-                                    </div>
-                                </div>
+                            <h2 className="text-[18px] font-semibold tracking-[-0.2px] text-[#182845]">Информация о проекте</h2>
+                        </div>
 
-                                <div className="flex gap-4">
-                                    <Calendar className="text-gray-400 shrink-0" size={22} />
-                                    <div>
-                                        <p className="text-xs text-gray-500 mb-1">Период</p>
-                                        <p className="font-medium text-gray-900">Учебный год</p>
-                                    </div>
-                                </div>
-
-                                <div className="flex gap-4">
-                                    <User className="text-gray-400 shrink-0" size={22} />
-                                    <div>
-                                        <p className="text-xs text-gray-500 mb-1">Руководитель</p>
-                                        <p className="font-medium text-gray-900">{project.curator || 'Не назначен'}</p>
-                                    </div>
-                                </div>
-
-                                <div className="flex gap-4">
-                                    <Building2 className="text-gray-400 shrink-0" size={22} />
-                                    <div>
-                                        <p className="text-xs text-gray-500 mb-1">Заказчик</p>
-                                        <p className="font-medium text-gray-900">{project.partner || 'Московский Политех'}</p>
-                                    </div>
+                        <div className="divide-y divide-[#E8EDF6]">
+                            <div className="flex gap-4 py-3 first:pt-1">
+                                <Users size={22} strokeWidth={1.8} className="mt-1 shrink-0 text-[#7F8EF8]" aria-hidden="true" />
+                                <div>
+                                    <p className="mb-1 text-[12px] text-[#182845]/50">Свободных мест</p>
+                                    <p className="text-[17px] font-semibold text-[#7F8EF8]">{project.spots_remaining} мест</p>
                                 </div>
                             </div>
+                            <div className="flex gap-4 py-3">
+                                <Calendar size={22} strokeWidth={1.8} className="mt-1 shrink-0 text-[#7F8EF8]" aria-hidden="true" />
+                                <div>
+                                    <p className="mb-1 text-[12px] text-[#182845]/50">Период</p>
+                                    <p className="text-[14px] font-medium text-[#182845]">Учебный год</p>
+                                </div>
+                            </div>
+                            <div className="flex gap-4 py-3">
+                                <User size={22} strokeWidth={1.8} className="mt-1 shrink-0 text-[#7F8EF8]" aria-hidden="true" />
+                                <div className="min-w-0">
+                                    <p className="mb-1 text-[12px] text-[#182845]/50">Руководитель</p>
+                                    <p className="text-[14px] font-medium text-[#182845]">{project.curator || 'Не назначен'}</p>
+                                </div>
+                            </div>
+                            <div className="flex gap-4 py-3">
+                                <Building2 size={22} strokeWidth={1.8} className="mt-1 shrink-0 text-[#7F8EF8]" aria-hidden="true" />
+                                <div>
+                                    <p className="mb-1 text-[12px] text-[#182845]/50">Заказчик</p>
+                                    <p className="text-[14px] font-medium text-[#182845]">{project.partner || 'Московский Политех'}</p>
+                                </div>
+                            </div>
+                        </div>
 
-                            <button 
-                                className="w-full mt-8 bg-[#7C85FC] text-white py-3 rounded-xl font-bold hover:bg-[#6B74EB] transition-colors shadow-md shadow-blue-200 disabled:opacity-50 disabled:cursor-not-allowed"
-                                disabled={project.spots_remaining <= 0}
-                            >
-                                {project.spots_remaining > 0 ? 'Записаться →' : 'Мест нет'}
-                            </button>
-                        </aside>
-                    </div>
+                        <button
+                            className="mt-4 min-h-11 w-full rounded-[12px] bg-[#7F82F8] px-4 text-[14px] font-semibold text-white shadow-[0_4px_10px_rgba(127,130,248,0.22)] transition-colors hover:bg-[#7074EE] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#7F8EF8] focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
+                            disabled={project.spots_remaining <= 0}
+                        >
+                            {project.spots_remaining > 0 ? 'Записаться →' : 'Мест нет'}
+                        </button>
+                    </aside>
+
+                    {project.technologies && project.technologies.length > 0 && (
+                        <section className="rounded-[18px] border border-[rgba(16,51,112,0.07)] bg-[#FCFCFE] p-5 shadow-[0_4px_4px_rgba(16,51,112,0.045)] sm:p-6 lg:col-span-2">
+                            <div className="mb-4 flex items-center gap-3">
+                                <div className="flex size-[38px] items-center justify-center rounded-full bg-[#EEF2FF] text-[#7F8EF8]">
+                                    <Code2 size={22} strokeWidth={1.8} aria-hidden="true" />
+                                </div>
+                                <h2 className="text-[19px] font-semibold tracking-[-0.2px] text-[#182845]">Используемые технологии</h2>
+                            </div>
+                            <div className="flex flex-wrap gap-2">
+                                {project.technologies.map((tech, idx) => (
+                                    <span key={idx} className="inline-flex min-h-[30px] items-center rounded-full bg-[#F0F3FF] px-3.5 text-[12px] font-medium text-[#7F8EF8]">
+                                        {tech}
+                                    </span>
+                                ))}
+                            </div>
+                        </section>
+                    )}
                 </div>
             </div>
-        </div>
+        </AppShell>
     );
 };

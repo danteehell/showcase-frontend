@@ -104,19 +104,19 @@ export const ProjectList = () => {
 
     if (loading) {
         return (
-            <div className="w-full">
-                <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-6">
+            <section aria-label="Проекты загружаются" className="w-full">
+                <div className="mb-5 flex flex-col justify-between gap-4 sm:flex-row sm:items-center">
                     <div className="flex items-center gap-3">
-                        <h2 className="text-xl md:text-2xl font-bold text-[#1A1A2E]">Проекты</h2>
-                        <span className="bg-[#F0F3FF] text-[#7C85FC] px-2.5 py-1 rounded-lg text-sm font-bold">
+                        <h2 className="text-2xl font-semibold leading-[1.276] tracking-[-0.5px] text-[#182845] sm:text-3xl">Проекты</h2>
+                        <span aria-hidden="true" className="flex h-[34px] min-w-[46px] items-center justify-center rounded-[15px] bg-[#DDE4FE] px-3 text-base font-medium text-[#7D72FF] sm:text-xl">
                             ...
                         </span>
                     </div>
                 </div>
-                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
+                <div aria-live="polite" className="grid grid-cols-1 gap-4 sm:grid-cols-2 sm:gap-5 lg:grid-cols-3 lg:gap-6">
                     {Array.from({ length: 6 }).map((_, i) => <ProjectCardSkeleton key={i} />)}
                 </div>
-            </div>
+            </section>
         );
     }
 
@@ -126,87 +126,83 @@ export const ProjectList = () => {
                    : FolderX;
 
         return (
-            <div className="w-full">
-                <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-6">
+            <section className="w-full">
+                <div className="mb-5 flex flex-col justify-between gap-4 sm:flex-row sm:items-center">
                     <div className="flex items-center gap-3">
-                        <h2 className="text-xl md:text-2xl font-bold text-[#1A1A2E]">Проекты</h2>
+                        <h2 className="text-2xl font-semibold leading-[1.276] tracking-[-0.5px] text-[#182845] sm:text-3xl">Проекты</h2>
                     </div>
                 </div>
-                <div className="flex flex-col items-center justify-center py-16 md:py-24 bg-white rounded-[24px] border border-gray-100 shadow-sm text-center px-4">
-                    <Icon size={48} className="text-gray-400 mb-4 md:w-14 md:h-14" strokeWidth={1.5} />
-                    <h3 className="text-lg md:text-xl font-bold text-gray-900 mb-2">
+                <div className="flex min-h-[280px] flex-col items-center justify-center rounded-[20px] border border-[#E9EEF8] bg-[#FCFCFE] px-5 py-14 text-center shadow-[0_4px_20px_rgba(24,40,69,0.04)] sm:min-h-[340px] sm:rounded-[24px] sm:px-8 md:py-20">
+                    <div className="mb-5 flex size-16 items-center justify-center rounded-full bg-[#F3F5FF] text-[#7F8EF8] sm:size-[72px]">
+                        <Icon size={32} className="sm:h-9 sm:w-9" strokeWidth={1.7} aria-hidden="true" />
+                    </div>
+                    <h3 className="mb-2 text-lg font-semibold tracking-[-0.2px] text-[#182845] sm:text-xl">
                         {error.type === 'network' ? 'Проблема с сетью' : 
                          error.type === 'server' ? 'Сервер прилег отдохнуть' : 
                          'Не удалось загрузить'}
                     </h3>
-                    <p className="text-sm md:text-base text-gray-500 mb-6 max-w-md">{error.message}</p>
+                    <p className="mb-6 max-w-md text-sm leading-6 text-[#182845]/65 sm:text-base">{error.message}</p>
                     
                     {(error.type === 'network' || error.type === 'server') && (
                         <button 
                             onClick={handleRetry}
-                            className="flex items-center gap-2 bg-[#7C85FC] text-white px-6 py-2.5 rounded-xl font-medium hover:bg-[#6B74EB] transition-colors text-sm md:text-base"
+                            className="flex min-h-11 items-center justify-center gap-2 rounded-xl bg-[#7F8EF8] px-5 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-[#6F7FEA] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#7F8EF8] focus-visible:ring-offset-2 sm:px-6 sm:text-base"
                         >
                             <RefreshCw size={18} />
                             Попробовать снова
                         </button>
                     )}
                 </div>
-            </div>
+            </section>
         );
     }
 
     if (projects.length === 0) {
         return (
-            <div className="w-full">
-                <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-6">
+            <section className="w-full">
+                <div className="mb-5 flex flex-col justify-between gap-4 sm:flex-row sm:items-center">
                     <div className="flex items-center gap-3">
-                        <h2 className="text-xl md:text-2xl font-bold text-[#1A1A2E]">Проекты</h2>
-                        <span className="bg-[#F0F3FF] text-[#7C85FC] px-2.5 py-1 rounded-lg text-sm font-bold">
+                        <h2 className="text-2xl font-semibold leading-[1.276] tracking-[-0.5px] text-[#182845] sm:text-3xl">Проекты</h2>
+                        <span className="flex h-[34px] min-w-[46px] items-center justify-center rounded-[15px] bg-[#DDE4FE] px-3 text-base font-medium text-[#7D72FF] sm:text-xl">
                             0
                         </span>
                     </div>
                 </div>
-                <div className="flex flex-col items-center justify-center py-16 md:py-24 bg-white rounded-[24px] border border-gray-100">
-                    <FolderX size={48} className="text-gray-400 mb-4 md:w-14 md:h-14" strokeWidth={1.5} />
-                    <h3 className="text-lg md:text-xl font-bold text-gray-900 mb-2">Проектов не найдено</h3>
-                    <p className="text-sm md:text-base text-gray-500 text-center px-4">Попробуйте изменить параметры фильтрации.</p>
+                <div className="flex min-h-[280px] flex-col items-center justify-center rounded-[20px] border border-[#E9EEF8] bg-[#FCFCFE] px-5 py-14 text-center sm:min-h-[340px] sm:rounded-[24px] sm:px-8 md:py-20">
+                    <div className="mb-5 flex size-16 items-center justify-center rounded-full bg-[#F3F5FF] text-[#7F8EF8] sm:size-[72px]">
+                        <FolderX size={32} className="sm:h-9 sm:w-9" strokeWidth={1.7} aria-hidden="true" />
+                    </div>
+                    <h3 className="mb-2 text-lg font-semibold tracking-[-0.2px] text-[#182845] sm:text-xl">Проектов не найдено</h3>
+                    <p className="max-w-md px-2 text-sm leading-6 text-[#182845]/65 sm:text-base">Попробуйте изменить параметры фильтрации.</p>
                 </div>
-            </div>
+            </section>
         );
     }
 
     return (
-        <div className="w-full">
-            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-6">
+        <section className="w-full">
+            <div className="mb-5 flex flex-col justify-between gap-4 sm:flex-row sm:items-center">
                 <div className="flex items-center gap-3">
-                    <h2 className="text-xl md:text-2xl font-bold text-[#1A1A2E]">Проекты</h2>
-                    <span className="bg-[#F0F3FF] text-[#7C85FC] px-2.5 py-1 rounded-lg text-sm font-bold">
+                    <h2 className="text-[28px] font-semibold leading-[1.276] tracking-[-0.5px] text-[#182845] sm:text-3xl">Проекты</h2>
+                    <span className="flex h-[34px] min-w-[46px] items-center justify-center rounded-[15px] bg-[#DDE4FE] px-3 text-base font-medium text-[#7D72FF] sm:text-xl">
                         {totalProjects}
                     </span>
                 </div>
-                <div className="flex items-center gap-2">
-                    <span className="text-xs md:text-sm text-gray-400">Сортировка:</span>
-                    <select className="bg-white border border-gray-200 rounded-lg px-3 py-1.5 outline-none text-xs md:text-sm font-medium text-gray-700 cursor-pointer focus:border-[#7C85FC] transition-colors">
-                        <option>По популярности</option>
-                        <option>Сначала новые</option>
-                        <option>По алфавиту</option>
-                    </select>
-                </div>
             </div>
 
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6 mb-8 md:mb-10">
+            <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 sm:gap-5 lg:grid-cols-3 lg:gap-6">
                 {projects.map((project) => (
                     <ProjectCard key={project.id} project={project} />
                 ))}
             </div>
 
             {totalPages > 1 && (
-                <div className="flex flex-wrap items-center justify-center gap-1.5 md:gap-2 mt-8">
+                <nav aria-label="Страницы проектов" className="mt-8 flex flex-wrap items-center justify-center gap-1.5 sm:gap-2 md:mt-10">
                     <button
                         onClick={() => handlePageChange(currentPage - 1)}
                         disabled={currentPage === 1}
                         aria-label="Предыдущая страница"
-                        className="w-9 h-9 md:w-10 md:h-10 flex items-center justify-center rounded-xl border border-gray-200 bg-white text-gray-600 disabled:opacity-50 disabled:cursor-not-allowed hover:bg-gray-50 transition-colors"
+                        className="flex size-9 items-center justify-center rounded-xl border border-[#E5EAF4] bg-[#FCFCFE] text-[#182845] transition-colors hover:bg-[#F3F5FF] disabled:cursor-not-allowed disabled:opacity-40 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#7F8EF8] sm:size-10"
                     >
                         <ChevronLeft size={18} className="md:w-5 md:h-5" />
                     </button>
@@ -214,7 +210,7 @@ export const ProjectList = () => {
                     {getPaginationRange().map((page, index) => {
                         if (page === '...') {
                             return (
-                                <span key={`dots-${index}`} className="w-9 h-9 md:w-10 md:h-10 flex items-center justify-center text-gray-400 text-sm">
+                                <span key={`dots-${index}`} className="flex size-9 items-center justify-center text-sm text-[#182845]/45 sm:size-10">
                                     ...
                                 </span>
                             );
@@ -227,10 +223,11 @@ export const ProjectList = () => {
                             <button
                                 key={pageNumber}
                                 onClick={() => handlePageChange(pageNumber)}
-                                className={`w-9 h-9 md:w-10 md:h-10 flex items-center justify-center rounded-xl text-sm font-semibold transition-colors ${
+                                aria-current={isCurrent ? 'page' : undefined}
+                                className={`flex size-9 items-center justify-center rounded-xl text-sm font-semibold transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#7F8EF8] focus-visible:ring-offset-2 sm:size-10 ${
                                     isCurrent 
-                                        ? 'bg-[#7C85FC] text-white border-transparent shadow-sm' 
-                                        : 'bg-white text-gray-700 border border-gray-200 hover:bg-gray-50'
+                                        ? 'border border-[#7F8EF8] bg-[#7F8EF8] text-white shadow-[0_4px_12px_rgba(127,142,248,0.24)]'
+                                        : 'border border-[#E5EAF4] bg-[#FCFCFE] text-[#182845] hover:bg-[#F3F5FF]'
                                 }`}
                             >
                                 {pageNumber}
@@ -242,12 +239,12 @@ export const ProjectList = () => {
                         onClick={() => handlePageChange(currentPage + 1)}
                         disabled={currentPage === totalPages}
                         aria-label="Следующая страница"
-                        className="w-9 h-9 md:w-10 md:h-10 flex items-center justify-center rounded-xl border border-gray-200 bg-white text-gray-600 disabled:opacity-50 disabled:cursor-not-allowed hover:bg-gray-50 transition-colors"
+                        className="flex size-9 items-center justify-center rounded-xl border border-[#E5EAF4] bg-[#FCFCFE] text-[#182845] transition-colors hover:bg-[#F3F5FF] disabled:cursor-not-allowed disabled:opacity-40 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#7F8EF8] sm:size-10"
                     >
                         <ChevronRight size={18} className="md:w-5 md:h-5" />
                     </button>
-                </div>
+                </nav>
             )}
-        </div>
+        </section>
     );
 };

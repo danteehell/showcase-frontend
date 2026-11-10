@@ -1,34 +1,27 @@
 export const ProjectCardSkeleton = () => {
     return (
-        <div className="bg-white rounded-[24px] p-6 flex flex-col h-full border border-gray-100 shadow-[0_4px_20px_rgba(0,0,0,0.03)]">
-            <div className="flex justify-between items-start mb-4">
-                <div className="w-24 h-7 bg-gray-200 rounded-full animate-pulse"></div>
-                <div className="w-6 h-6 bg-gray-200 rounded animate-pulse"></div>
-            </div>
-            
-            <div className="w-3/4 h-7 bg-gray-200 rounded mb-2 animate-pulse"></div>
-            <div className="w-1/2 h-7 bg-gray-200 rounded mb-4 animate-pulse"></div>
-            
-            <div className="space-y-2 mb-5 flex-grow">
-                <div className="w-full h-4 bg-gray-200 rounded animate-pulse"></div>
-                <div className="w-full h-4 bg-gray-200 rounded animate-pulse"></div>
-                <div className="w-2/3 h-4 bg-gray-200 rounded animate-pulse"></div>
-            </div>
-            
-            <div className="flex gap-2 mb-6">
-                <div className="w-16 h-7 bg-gray-200 rounded-full animate-pulse"></div>
-                <div className="w-16 h-7 bg-gray-200 rounded-full animate-pulse"></div>
-                <div className="w-16 h-7 bg-gray-200 rounded-full animate-pulse"></div>
+        <div aria-hidden="true" className="flex h-full min-h-[278px] flex-col rounded-[17px] border border-[rgba(16,51,112,0.1)] bg-[#FCFCFE] px-5 pb-[14px] pt-[14px] shadow-[0_4px_4px_rgba(16,51,112,0.05)]">
+            <div className="mb-[10px] flex items-start justify-between">
+                <div className="h-[33px] w-[76px] animate-pulse rounded-full bg-[#E8EBF4]" />
+                <div className="mt-1 size-5 animate-pulse rounded bg-[#E8EBF4]" />
             </div>
 
-            <div className="flex items-end justify-between mt-auto pt-2">
-                <div className="flex gap-5">
-                    <div className="flex items-center gap-2">
-                        <div className="w-6 h-6 bg-gray-200 rounded-full animate-pulse"></div>
-                        <div className="w-16 h-8 bg-gray-200 rounded animate-pulse"></div>
-                    </div>
-                </div>
-                <div className="w-28 h-10 bg-gray-200 rounded-xl animate-pulse"></div>
+            <div className="mb-[10px] mt-1 h-6 w-4/5 animate-pulse rounded bg-[#E8EBF4]" />
+            <div className="mb-[11px] h-[54px] space-y-2 pt-1">
+                <div className="h-3 w-full animate-pulse rounded bg-[#EEF1F7]" />
+                <div className="h-3 w-full animate-pulse rounded bg-[#EEF1F7]" />
+                <div className="h-3 w-2/3 animate-pulse rounded bg-[#EEF1F7]" />
+            </div>
+
+            <div className="flex min-h-[33px] gap-2">
+                <div className="h-[33px] w-[70px] animate-pulse rounded-full bg-[#EEF1F7]" />
+                <div className="h-[33px] w-[50px] animate-pulse rounded-full bg-[#EEF1F7]" />
+                <div className="h-[33px] w-[58px] animate-pulse rounded-full bg-[#EEF1F7]" />
+            </div>
+
+            <div className="mt-auto flex items-center gap-3 pt-4">
+                <div className="h-8 min-w-0 flex-1 animate-pulse rounded bg-[#EEF1F7]" />
+                <div className="h-[35px] w-[113px] shrink-0 animate-pulse rounded-[11px] bg-[#DDE4FE]" />
             </div>
         </div>
     );
