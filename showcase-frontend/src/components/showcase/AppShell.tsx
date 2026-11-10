@@ -27,9 +27,9 @@ function Brand() {
     return (
         <Link to="/" aria-label="Московский Политех — на главную" className="flex items-center justify-center">
             <img
-                src="/assets/polytech-logo.svg"
+                src="/assets/polytech-logo.svg?v=2"
                 alt="Центр проектной деятельности Московского Политеха"
-                className="h-[76px] w-[210px] object-contain [filter:brightness(0)_saturate(100%)_invert(15%)_sepia(49%)_saturate(1461%)_hue-rotate(190deg)_brightness(88%)_contrast(94%)]"
+                className="h-[76px] w-[210px] object-contain"
             />
         </Link>
     );
