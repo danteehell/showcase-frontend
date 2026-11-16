@@ -22,5 +22,5 @@
     "erasableSyntaxOnly": true,
     "noFallthroughCasesInSwitch": true
   },
-  "include": ["src"]
+  "include": ["src", "../../../veb-programming/js/2/DirectionCard.tsx", "../../../veb-programming/js/2/ProjectForm.tsx"]
 }

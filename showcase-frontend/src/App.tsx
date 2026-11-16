@@ -1,16 +1,16 @@
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import { ShowcasePage } from './pages/ShowcasePage';
-import { ProjectDetail } from './pages/ProjectDetailsPage'; 
+import { Routes, Route } from 'react-router';
+import { Header } from './components/Header';
+import { CreateApplicationProject } from './components/showcase/CreateApplicationProject';
 
 function App() {
   return (
-    <BrowserRouter>
+    <div className="min-h-screen bg-[#FAFAFC]">
+      <Header />
       <Routes>
-        <Route path="/" element={<ShowcasePage />} />
-      
-        <Route path="/projects/:id" element={<ProjectDetail />} />
+        <Route path="/" element={<div className="p-10 text-center text-xl text-gray-500">Главная страница (тут будет витрина)</div>} />
+        <Route path="/apply" element={<CreateApplicationProject />} />
       </Routes>
-    </BrowserRouter>
+    </div>
   );
 }
 
